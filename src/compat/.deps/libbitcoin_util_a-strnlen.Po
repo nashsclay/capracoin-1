@@ -1,42 +1,42 @@
 compat/libbitcoin_util_a-strnlen.o: compat/strnlen.cpp \
- /usr/include/stdc-predef.h config/capracoin-config.h \
- /usr/include/c++/5/cstring \
- /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h \
- /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
- /usr/include/x86_64-linux-gnu/bits/wordsize.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h \
- /usr/include/string.h /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
- /usr/include/xlocale.h /usr/include/x86_64-linux-gnu/bits/string3.h
-
-/usr/include/stdc-predef.h:
+ config/capracoin-config.h C:/msys64/mingw32/include/c++/7.3.0/cstring \
+ C:/msys64/mingw32/include/c++/7.3.0/i686-w64-mingw32/bits/c++config.h \
+ C:/msys64/mingw32/include/c++/7.3.0/i686-w64-mingw32/bits/os_defines.h \
+ C:/msys64/mingw32/include/c++/7.3.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/string.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/crtdefs.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/_mingw.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_mac.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_secapi.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/vadefs.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/sdks/_mingw_directx.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/msys64/mingw32/i686-w64-mingw32/include/sec_api/string_s.h
 
 config/capracoin-config.h:
 
-/usr/include/c++/5/cstring:
+C:/msys64/mingw32/include/c++/7.3.0/cstring:
 
-/usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h:
+C:/msys64/mingw32/include/c++/7.3.0/i686-w64-mingw32/bits/c++config.h:
 
-/usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h:
+C:/msys64/mingw32/include/c++/7.3.0/i686-w64-mingw32/bits/os_defines.h:
 
-/usr/include/features.h:
+C:/msys64/mingw32/include/c++/7.3.0/i686-w64-mingw32/bits/cpu_defines.h:
 
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/string.h:
 
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/crtdefs.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/_mingw.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_mac.h:
 
-/usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/_mingw_secapi.h:
 
-/usr/include/string.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/vadefs.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/sdks/_mingw_directx.h:
 
-/usr/include/xlocale.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/sdks/_mingw_ddk.h:
 
-/usr/include/x86_64-linux-gnu/bits/string3.h:
+C:/msys64/mingw32/i686-w64-mingw32/include/sec_api/string_s.h:

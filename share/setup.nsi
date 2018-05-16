@@ -1,20 +1,20 @@
-Name "CapraCoin Core (-bit)"
+Name "CapraCoin Core (32-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 2.0.0
+!define VERSION 1.0.0
 !define COMPANY "CapraCoin Core project"
 !define URL http://bit.capracoins/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/root/CPRA/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/root/CPRA/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/root/CPRA/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -22,13 +22,13 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "CapraCoin Core"
 !define MUI_FINISHPAGE_RUN $INSTDIR\capracoin-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/root/CPRA/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
 !include Sections.nsh
 !include MUI2.nsh
-!if "" == "64"
+!if "32" == "64"
 !include x64.nsh
 !endif
 
@@ -48,8 +48,8 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /root/CPRA/capracoin-${VERSION}-win-setup.exe
-!if "" == "64"
+OutFile /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/capracoin-${VERSION}-win32-setup.exe
+!if "32" == "64"
 InstallDir $PROGRAMFILES64\CPRA
 !else
 InstallDir $PROGRAMFILES\CPRA
@@ -58,7 +58,7 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion ${VERSION}.3
+VIProductVersion ${VERSION}.1
 VIAddVersionKey ProductName "CapraCoin Core"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -73,14 +73,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /root/CPRA/release/capracoin-qt.exe
-    File /oname=COPYING.txt /root/CPRA/COPYING
-    File /oname=readme.txt /root/CPRA/doc/README_windows.txt
+    File /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/release/capracoin-qt.exe
+    File /oname=COPYING.txt /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/COPYING
+    File /oname=readme.txt /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /root/CPRA/release/capracoind.exe
-    File /root/CPRA/release/capracoin-cli.exe
+    File /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/release/capracoind.exe
+    File /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/release/capracoin-cli.exe
     SetOutPath $INSTDIR\doc
-    File /r /root/CPRA/doc\*.*
+    File /r /c/Users/wolfgang/Documents/Privat/Coins/Dev/capracoin/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 
@@ -160,7 +160,7 @@ SectionEnd
 # Installer functions
 Function .onInit
     InitPluginsDir
-!if "" == "64"
+!if "32" == "64"
     ${If} ${RunningX64}
       ; disable registry redirection (enable access to 64-bit portion of registry)
       SetRegView 64

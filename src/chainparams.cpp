@@ -11,7 +11,7 @@
 #include "random.h"
 #include "util.h"
 #include "utilstrencodings.h"
-
+#include "bignum.h"
 #include <assert.h>
 
 #include <boost/assign/list_of.hpp>
@@ -59,7 +59,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 ;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1523967685, // * UNIX timestamp of last checkpoint block
+	1526435548, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1200        // * estimated number of transactions per day after checkpoint
@@ -94,11 +94,11 @@ public:
          * a large 4-byte int at any alignment.
          */
         pchMessageStart[0] = 0x64;
-        pchMessageStart[1] = 0x44;
+        pchMessageStart[1] = 0x75;
         pchMessageStart[2] = 0x15;
-        pchMessageStart[3] = 0x54;
-        vAlertPubKey = ParseHex("04266db20be5c53b93678e2e41c9def7af38197280c65e813f682adf2ed501ac186022562dbdf2ce3204d07432660fb61ecad8e78b6b8d39c568fb892db8ecb736");
-        nDefaultPort = 22788;
+        pchMessageStart[3] = 0x21;
+        vAlertPubKey = ParseHex("04266db20be5c53b94818e2e41c9def7af38197280c65e813f682adf2ed501ac186022562dbdf2ce3204d07432660fb61ecad8e78b6b8d39c568fb892db8ecb736");
+        nDefaultPort = 25791;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -108,14 +108,14 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60;
         nTargetSpacing = 1 * 60;
-        nLastPOWBlock = 1500;
-        nMaturity = 101;
+        nLastPOWBlock = 240;
+        nMaturity = 50;
         nMasternodeCountDrift = 20;
-	nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
+	    nMasternodeColleteralLimxDev = 4000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
-        nMaxMoneyOut = 37000000 * COIN;
+        nMaxMoneyOut = 80000000 * COIN;
 
-        const char* pszTimestamp = "CapraCoin cryptocurrency";
+        const char* pszTimestamp = "Fox Discrimination Suits Settled for Roughly $10 Million";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -126,23 +126,39 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1523967685;
+        genesis.nTime = 1526511996;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 20680493;
+        genesis.nNonce = 23949343;
+
+        uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+        while (genesis.GetHash() > hashTarget)
+        {
+            ++genesis.nNonce;
+            if (genesis.nNonce == 0)
+            {
+                printf("NONCE WRAPPED, incrementing time");
+                ++genesis.nTime;
+            }
+			if (genesis.nNonce % 10000 == 0)
+			{
+				printf("nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+			}
+        }
 		
         hashGenesisBlock = genesis.GetHash();
-	//printf("%s\n", hashGenesisBlock.ToString().c_str());
-	//printf("%s\n", genesis.hashMerkleRoot.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x000009b804f3b9906e5a1d11bb830c11108e44a7f7e76198a1fc23b8e801b229"));
-        assert(genesis.hashMerkleRoot == uint256("0xaf37efd05b65244d7ad077f07089c0c625fc1ec0c0a5e5aa7b04865620982d37"));
+        printf("MN nNonce %u\n", genesis.nNonce);
+	    printf("MN hashGenesisBlock %s\n", hashGenesisBlock.ToString().c_str());
+	    printf("MN hashMerkleRoot %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("MN nTime %u\n", genesis.nTime);
+        assert(hashGenesisBlock == uint256("0x000008f4908578a218361bbf627930d132dbfac0260c77bbbaae6b796ed7d598"));
+        assert(genesis.hashMerkleRoot == uint256("0x523d7a2bd59e2a4490c7101c04f6ee0fc0e95da29f85642aa0335735703f3177"));
         
+        vSeeds.push_back(CDNSSeedData("cpra-syncnode1.giize.com", "cpra-syncnode1.giize.com"));
 
-        vSeeds.push_back(CDNSSeedData("s1.capracoin.site", "s1.capracoin.site"));
-        vSeeds.push_back(CDNSSeedData("s2.capracoin.site", "s2.capracoin.site"));
         //vFixedSeeds.clear();
         //vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 193);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
@@ -154,17 +170,17 @@ public:
 
         fRequireRPCPassword = true;
         fMiningRequiresPeers = false;
-        fAllowMinDifficultyBlocks = false;
+        fAllowMinDifficultyBlocks = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
-        fMineBlocksOnDemand = false;
+        fMineBlocksOnDemand = true;
         fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
 
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "0478c3e932fbe183b2f665de937866cb1cfc5ed4b0bf733b72286f265ffc03ff52dfd669fbb3f77d630e5393da65c721a9a891d2c4c6aa515dfd25ffe545582357";
+        strSporkKey = "0478c3e932fbe183b2f665de901966cb1cfc5ed4b0bf733b72286f265ffc03ff52dfd669fbb3f77d630e5393da65c721a9a891d2c4c6aa515dfd25ffe545582357";
         strDarksendPoolDummyAddress = "AcmpqXViWUXNroqVNYRdKjKrFM6PNa1oTM";
         nStartMasternodePayments = 1523967685; 
     }
@@ -189,9 +205,9 @@ public:
         pchMessageStart[0] = 0x14;
         pchMessageStart[1] = 0x64;
         pchMessageStart[2] = 0x54;
-        pchMessageStart[3] = 0x65;
-        vAlertPubKey = ParseHex("0485286086a0871308bf36519edb18d95bbe9b098abe14ec9b684b5255028ec644bacdbddb98a522a6bcd7ab8e7d3582d7a5b9bf59c427f7eabce447b5ba6de25f");
-        nDefaultPort = 22888;
+        pchMessageStart[3] = 0x90;
+        vAlertPubKey = ParseHex("0445286086a0871308bf36091edb18d95bbe9b895abe14ec9b684b5255028ec644bacdbddb98a522a6bcd7ab8e7d3582d7a5b9bf59c427f7eabce447b5ba6de25f");
+        nDefaultPort = 25790;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
@@ -204,12 +220,30 @@ public:
         nMaxMoneyOut = 90000000 * COIN;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1523967686;
-        genesis.nNonce = 21058558;
-
+        genesis.nTime = 1526435548;
+        genesis.nBits = 0x1e0ffff0;
+        genesis.nNonce = 21540085;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000058c1f17da614d48d2b454dab5e122a205094325bfacba40379d4053bc9c"));
+        uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+        while (genesis.GetHash() > hashTarget)
+        {
+            ++genesis.nNonce;
+            if (genesis.nNonce == 0)
+            {
+                printf("NONCE WRAPPED, incrementing time");
+                ++genesis.nTime;
+            }
+			if (genesis.nNonce % 10000 == 0)
+			{
+				printf("nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+			}
+        }
+        printf("TN nNonce %u\n", genesis.nNonce);
+	    printf("TN hashGenesisBlock %s\n", hashGenesisBlock.ToString().c_str());
+	    printf("TN hashMerkleRoot %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("TN nTime %u\n", genesis.nTime);
+        assert(hashGenesisBlock == uint256("0x000000d092afdb7a38eab00ce3c434c30fea0fe0e9faf4ee6d2bb464122d01ad"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -226,7 +260,6 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
 
-
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fAllowMinDifficultyBlocks = true;
@@ -234,8 +267,6 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
-
-
 
         nPoolMaxTransactions = 2;
         strSporkKey = "04363509d5c65f5a9ca7ceedad4887007ae85469d249a6f566b788504ee5e105bcf1bbc515f49a7aac3bceb8864bb2ba84bebd92c66ff9022309e2bfbd5f70d11f";
@@ -263,7 +294,7 @@ public:
         pchMessageStart[0] = 0x65;
         pchMessageStart[1] = 0x14;
         pchMessageStart[2] = 0x54;
-        pchMessageStart[3] = 0x64;
+        pchMessageStart[3] = 0x61;
         nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
@@ -272,13 +303,33 @@ public:
         nTargetTimespan = 24 * 60 * 60;
         nTargetSpacing = 1 * 60;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1523967687;
+        genesis.nTime = 1526435548;
         genesis.nBits = 0x207fffff;
-        genesis.nNonce = 10;
+        genesis.nNonce = 21540085;
+
+        hashGenesisBlock = genesis.GetHash();
+        uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+        while (genesis.GetHash() > hashTarget)
+        {
+            ++genesis.nNonce;
+            if (genesis.nNonce == 0)
+            {
+                printf("NONCE WRAPPED, incrementing time");
+                ++genesis.nTime;
+            }
+			if (genesis.nNonce % 10000 == 0)
+			{
+				printf("nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+			}
+        }
+        printf("RT nNonce %u\n", genesis.nNonce);
+	    printf("RT hashGenesisBlock %s\n", hashGenesisBlock.ToString().c_str());
+	    printf("RT hashMerkleRoot %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("RT nTime %u\n", genesis.nTime);
 		
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 22988;
-        assert(hashGenesisBlock == uint256("0x1c73a5be9f91cb1f5da094f5e95294d034bbada4ca0faee2f2221c8402244b8b"));
+        assert(hashGenesisBlock == uint256("0x3f5ebc6c49e0dd3f672bd756dc1f57d5258b4d0f4af3d039df74d2d31eeb1125"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
