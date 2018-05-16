@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=CPRA
+Comment=CPRA P2P Cryptocurrency
+Exec=capracoin-qt %u
+Terminal=false
+Type=Application
+Icon=capracoin128
+MimeType=x-scheme-handler/capracoin;
+Categories=Office;Finance;
+Name[en_US]=capracoin-qt.desktop

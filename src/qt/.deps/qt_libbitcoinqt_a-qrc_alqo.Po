@@ -1,0 +1,4 @@
+qt/qt_libbitcoinqt_a-qrc_capracoin.o: qt/qrc_capracoin.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

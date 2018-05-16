@@ -1,0 +1,26 @@
+[Unit]
+Description=CPRA's distributed currency daemon
+After=network.target
+
+[Service]
+User=capracoin
+Group=capracoin
+
+Type=forking
+PIDFile=/var/lib/capracoind/capracoind.pid
+
+ExecStart=/usr/bin/capracoind -daemon -pid=/var/lib/capracoind/capracoind.pid \
+          -conf=/etc/capracoin/capracoin.conf -datadir=/var/lib/capracoind
+
+ExecStop=-/usr/bin/capracoin-cli -conf=/etc/capracoin/capracoin.conf \
+         -datadir=/var/lib/capracoind stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

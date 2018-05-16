@@ -1,0 +1,11 @@
+[Protocol]
+exec=capracoin-qt '%u'
+protocol=capracoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
