@@ -57,6 +57,7 @@ INCLUDEPATH += . \
 
 # Input
 HEADERS += src/activemasternode.h \
+           src/bignum.h \
            src/addrman.h \
            src/alert.h \
            src/allocators.h \
