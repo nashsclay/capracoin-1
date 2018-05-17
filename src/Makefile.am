@@ -75,6 +75,7 @@ endif
 # capracoin core #
 BITCOIN_CORE_H = \
   activemasternode.h \
+  bignum.h \
   addrman.h \
   alert.h \
   allocators.h \
