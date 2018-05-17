@@ -10,7 +10,7 @@ COIN_REPO='https://github.com/capracoin/capracoin.git'
 COIN_TGZ=''
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='CapraCoin'
-COIN_PORT=22788
+COIN_PORT=25791
 RPC_PORT=22789
 
 NODEIP=$(curl -s4 icanhazip.com)

@@ -205,10 +205,10 @@ static const char UNUSED* capracoin_strings[] = {
     QT_TRANSLATE_NOOP("capracoin-core", ""
                                    "You must specify a masternodeprivkey in the configuration. Please see "
                                    "documentation for help."),
-    QT_TRANSLATE_NOOP("capracoin-core", "(22788 could be used only on mainnet)"),
+    QT_TRANSLATE_NOOP("capracoin-core", "(25791 could be used only on mainnet)"),
     QT_TRANSLATE_NOOP("capracoin-core", "(default: %s)"),
     QT_TRANSLATE_NOOP("capracoin-core", "(default: 1)"),
-    QT_TRANSLATE_NOOP("capracoin-core", "(must be 22788 for mainnet)"),
+    QT_TRANSLATE_NOOP("capracoin-core", "(must be 25791 for mainnet)"),
     QT_TRANSLATE_NOOP("capracoin-core", "<category> can be:\n"),
     QT_TRANSLATE_NOOP("capracoin-core", "Accept command line and JSON-RPC commands"),
     QT_TRANSLATE_NOOP("capracoin-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
