@@ -86,8 +86,7 @@ before_deploy:
 deploy:
   # GitHub - Add zip to release
   - provider: releases
-    api_key:
-      secure: "bb96d6742dc8974f89dd4348385f7501a6350907"
+    api_key: "bb96d6742dc8974f89dd4348385f7501a6350907"
     file: ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.zip
     skip_cleanup: true
     on:
