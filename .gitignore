@@ -6,3 +6,13 @@
 *.Po
 /src/script/.deps/*.Po
  .deps
+/src/crypto/.libs
+*.o
+/src/*.lo
+*.la
+*.moc
+*.lo
+/src/qt/libbitcoinqt.a
+/src/qt/moc_*.cpp
+/src/.libs/*
+/src/univalue/libbitcoin_univalue.a
