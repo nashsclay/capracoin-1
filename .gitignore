@@ -1,7 +1,6 @@
 /src/*.o
 /src/qt/.deps/*.Po
 /src/qt/.deps
-/*
 /src/compat/.deps
  .deps
 *.Po
