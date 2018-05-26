@@ -140,9 +140,8 @@ void CMasternodeSync::GetNextAsset()
     case (MASTERNODE_SYNC_INITIAL):
     case (MASTERNODE_SYNC_FAILED): // should never be used here actually, use Reset() instead
         ClearFulfilledRequest();
-    /*  zero24x: Disabled since frozen.
-    RequestedMasternodeAssets = MASTERNODE_SYNC_SPORKS;
-        break; */
+        RequestedMasternodeAssets = MASTERNODE_SYNC_SPORKS;
+        break;
     case (MASTERNODE_SYNC_SPORKS):
         RequestedMasternodeAssets = MASTERNODE_SYNC_LIST;
         break;
@@ -289,11 +288,10 @@ void CMasternodeSync::Process()
             if (pnode->HasFulfilledRequest("getspork")) continue;
             pnode->FulfilledRequest("getspork");
 
-            /* zero24x: Disabled since not working by
             pnode->PushMessage("getsporks"); //get current network sporks
             if (RequestedMasternodeAttempt >= 2) GetNextAsset();
             RequestedMasternodeAttempt++;
-		   */
+
             return;
         }
 
